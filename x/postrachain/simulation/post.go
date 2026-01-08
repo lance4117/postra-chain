@@ -1,7 +1,9 @@
 package simulation
 
 import (
+	"fmt"
 	"math/rand"
+	"strings"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -24,7 +26,10 @@ func SimulateMsgCreatePost(
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
 		msg := &types.MsgCreatePost{
-			Creator: simAccount.Address.String(),
+			Creator:     simAccount.Address.String(),
+			Title:       randomTitle(r),
+			ContentUri:  randomContentURI(r),
+			ContentHash: randomContentHash(r),
 		}
 
 		txCtx := simulation.OperationInput{
@@ -85,6 +90,9 @@ func SimulateMsgUpdatePost(
 		}
 		msg.Creator = simAccount.Address.String()
 		msg.Id = post.Id
+		msg.Title = randomTitle(r)
+		msg.ContentUri = randomContentURI(r)
+		msg.ContentHash = randomContentHash(r)
 
 		txCtx := simulation.OperationInput{
 			R:               r,
@@ -101,6 +109,28 @@ func SimulateMsgUpdatePost(
 		}
 		return simulation.GenAndDeliverTxWithRandFees(txCtx)
 	}
+}
+
+func randomTitle(r *rand.Rand) string {
+	return fmt.Sprintf("Post %d", r.Intn(1000000))
+}
+
+func randomContentURI(r *rand.Rand) string {
+	return fmt.Sprintf("https://example.com/post/%d", r.Intn(1000000))
+}
+
+func randomContentHash(r *rand.Rand) string {
+	return "sha256:" + randomHex(r, 64)
+}
+
+func randomHex(r *rand.Rand, length int) string {
+	const hexChars = "0123456789abcdef"
+	var builder strings.Builder
+	builder.Grow(length)
+	for i := 0; i < length; i++ {
+		builder.WriteByte(hexChars[r.Intn(len(hexChars))])
+	}
+	return builder.String()
 }
 
 func SimulateMsgDeletePost(

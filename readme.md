@@ -40,7 +40,7 @@ Post {
   title: string         // 标题，长度 <= 140
   content_uri: string   // 正文内容地址（IPFS / HTTPS 等）
   content_hash: string  // 正文内容哈希（sha256:<hex> 或 <hex>）
-  created_at: int64     // 发布时间（区块时间，Unix 秒）
+  created_at: int64     // 发布时间（区块时间，Unix 秒，由链端写入）
 }
 ````
 
@@ -154,9 +154,29 @@ postrad tx posts create-post \
   --yes
 ```
 
+说明：`created_at` 由链端写入，客户端不需要传入该字段。
+
 ---
 
-### 4）查询 Post
+### 4）更新 Post
+
+仅允许更新 `title`、`content_uri`、`content_hash`。
+
+```bash
+postrad tx posts update-post \
+  <id> \
+  "Updated Title" \
+  "https://example.com/content/updated.md" \
+  "sha256:<hex>" \
+  --from <key-name> \
+  --chain-id postra-1 \
+  --node http://localhost:26657 \
+  --yes
+```
+
+---
+
+### 5）查询 Post
 
 Ignite 默认会生成如下查询命令：
 
@@ -175,8 +195,11 @@ postrad query posts show-post <id> --node http://localhost:26657
 
 * Post 对象（content_uri + content_hash）
 * 创建 Post
+* 更新 Post（仅 title/content_uri/content_hash）
+* 删除 Post
 * 列表与分页查询
 * 使用区块时间作为 created_at
+* 基础字段校验（title 长度、URI scheme、content_hash 格式）
 
 未来可扩展方向（非 v0.1 必需）：
 

@@ -42,15 +42,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "CreatePost",
-					Use:            "create-post [title] [content-uri] [content-hash] [created-at]",
+					Use:            "create-post [title] [content-uri] [content-hash]",
 					Short:          "Create post",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "title"}, {ProtoField: "content_uri"}, {ProtoField: "content_hash"}, {ProtoField: "created_at"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "title"}, {ProtoField: "content_uri"}, {ProtoField: "content_hash"}},
 				},
 				{
 					RpcMethod:      "UpdatePost",
-					Use:            "update-post [id] [title] [content-uri] [content-hash] [created-at]",
+					Use:            "update-post [id] [title] [content-uri] [content-hash]",
 					Short:          "Update post",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "title"}, {ProtoField: "content_uri"}, {ProtoField: "content_hash"}, {ProtoField: "created_at"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "title"}, {ProtoField: "content_uri"}, {ProtoField: "content_hash"}},
 				},
 				{
 					RpcMethod:      "DeletePost",
