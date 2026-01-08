@@ -56,7 +56,6 @@ message MsgCreatePost {
   string title = 2;
   string content_uri = 3;
   string content_hash = 4;
-  int64 created_at = 5;
 }
 
 // MsgCreatePostResponse defines the MsgCreatePostResponse message.
@@ -72,7 +71,6 @@ message MsgUpdatePost {
   string title = 3;
   string content_uri = 4;
   string content_hash = 5;
-  int64 created_at = 6;
 }
 
 // MsgUpdatePostResponse defines the MsgUpdatePostResponse message.
