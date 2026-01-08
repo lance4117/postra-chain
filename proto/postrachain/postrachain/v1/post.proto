@@ -1,0 +1,14 @@
+syntax = "proto3";
+package postrachain.postrachain.v1;
+
+option go_package = "postra-chain/x/postrachain/types";
+
+// Post defines the Post message.
+message Post {
+  uint64 id = 1;
+  string title = 2;
+  string content_uri = 3;
+  string content_hash = 4;
+  int64 created_at = 5;
+  string creator = 6;
+}

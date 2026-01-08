@@ -17,3 +17,8 @@ const (
 
 // ParamsKey is the prefix to retrieve all Params
 var ParamsKey = collections.NewPrefix("p_postrachain")
+
+var (
+	PostKey      = collections.NewPrefix("post/value/")
+	PostCountKey = collections.NewPrefix("post/count/")
+)

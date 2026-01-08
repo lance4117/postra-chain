@@ -21,8 +21,31 @@ func TestGenesisState_Validate(t *testing.T) {
 		},
 		{
 			desc:     "valid genesis state",
-			genState: &types.GenesisState{},
-			valid:    true,
+			genState: &types.GenesisState{PostList: []types.Post{{Id: 0}, {Id: 1}}, PostCount: 2}, valid: true,
+		}, {
+			desc: "duplicated post",
+			genState: &types.GenesisState{
+				PostList: []types.Post{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		}, {
+			desc: "invalid post count",
+			genState: &types.GenesisState{
+				PostList: []types.Post{
+					{
+						Id: 1,
+					},
+				},
+				PostCount: 0,
+			},
+			valid: false,
 		},
 	}
 	for _, tc := range tests {
