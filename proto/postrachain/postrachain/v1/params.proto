@@ -1,0 +1,13 @@
+syntax = "proto3";
+package postrachain.postrachain.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "postra-chain/x/postrachain/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "postrachain/x/postrachain/Params";
+  option (gogoproto.equal) = true;
+}

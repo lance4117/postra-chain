@@ -1,0 +1,17 @@
+syntax = "proto3";
+package postrachain.postrachain.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "postrachain/postrachain/v1/params.proto";
+
+option go_package = "postra-chain/x/postrachain/types";
+
+// GenesisState defines the postrachain module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}

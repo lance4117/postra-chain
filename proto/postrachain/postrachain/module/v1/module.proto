@@ -1,0 +1,15 @@
+syntax = "proto3";
+package postrachain.postrachain.module.v1;
+
+import "cosmos/app/v1alpha1/module.proto";
+
+option go_package = "postra-chain/x/postrachain/types";
+
+// Module is the config object for the module.
+message Module {
+  option (cosmos.app.v1alpha1.module) = {go_import: "postra-chain/x/postrachain"};
+
+  // authority defines the custom module authority.
+  // If not set, defaults to the governance module.
+  string authority = 1;
+}
