@@ -241,5 +241,4 @@ postra-chain 使用语义化版本号（Semantic Versioning）。
 
 ## 许可证
 
-开源许可证待定。
-建议使用 Apache-2.0 或 MIT。
+本项目采用 Apache-2.0 许可证，详见 [LICENSE](LICENSE) 文件。
